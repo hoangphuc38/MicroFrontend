@@ -1,0 +1,29 @@
+<single-spa-router>
+  <!--
+
+    This is the single-spa Layout Definition for your microfrontends.
+    See https://single-spa.js.org/docs/layout-definition/ for more information.
+
+  -->
+
+  <nav>
+    <application name="@pc/nav-bar"></application>
+  </nav>
+  <route path="product">
+    <application name="@mfe/home"></application>
+  </route>
+
+  <route path="sales">
+    <application name="@pc/auth"></application>
+  </route>
+
+  <route path="auth">
+    <application name="@pc/auth"></application>
+  </route>
+
+  <main>
+    <route default>
+      <application name="@mfe/home"></application>
+    </route>
+  </main>
+</single-spa-router>
