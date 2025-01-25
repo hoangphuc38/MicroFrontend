@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:single-spa:cart": "ng build cart --configuration production",
-    "serve:single-spa:cart": "ng s --project cart --disable-host-check --port 9003 --live-reload false",
+    "serve:single-spa:cart": "ng s --project cart --disable-host-check --port 9003 --live-reload true",
     "serve:dev": "ng serve --project cart-standalone"
   },
   "private": true,

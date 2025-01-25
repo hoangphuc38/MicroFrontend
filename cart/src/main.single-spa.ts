@@ -13,7 +13,7 @@ const lifecycles = singleSpaAngular({
     return bootstrapApplication(AppComponent, {
       providers: [
         getSingleSpaExtraProviders(),
-        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: APP_BASE_HREF, useValue: '/sales' },
         provideRouter(routes)
       ]
     });
