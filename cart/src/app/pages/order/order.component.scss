@@ -1,0 +1,55 @@
+.container {
+    width: 100vw;
+    margin-top: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.text-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #125B9A;
+}
+
+.orders-container {
+    margin-top: 30px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.header-row {
+    background-color: #0056b3;
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: normal;
+    font-weight: bold;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.details-link {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.details-link:hover {
+    text-decoration: none;
+    color: orangered;
+}
+
+.data-row:hover {
+    background-color: #DFF2EB;
+}

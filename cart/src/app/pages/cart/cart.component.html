@@ -1,7 +1,7 @@
 <div class="container">
     <div class="title">
         <span class="title-text">My Cart</span>
-        <button class="btn">Check order list</button>
+        <button [routerLink]="['/order']" class="btn">Check order list</button>
     </div>
     <div class="content">
         <div class="product-list">
@@ -111,16 +111,16 @@
         </div>
         <div class="order-summary">
             <div class="subtotal">
-                <span>Subtotal</span>
-                <span>0 $</span>
+                <span class="text-title">Subtotal</span>
+                <span class="text-delivery-fee">0 $</span>
             </div>
             <div class="delivery-fee">
-                <span>Delivery Fee</span>
-                <span>5 $</span>
+                <span class="text-title">Delivery Fee</span>
+                <span class="text-delivery-fee">5 $</span>
             </div>
             <div class="total">
-                <span>Total</span>
-                <span>5 $</span>
+                <span class="text-title">Total</span>
+                <span class="text-total">5 $</span>
             </div>
             <button class="order-btn">Order</button>
         </div>

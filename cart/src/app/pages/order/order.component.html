@@ -1,1 +1,27 @@
-<div>Hello from Angular - Order</div>
+<div class="container">
+    <span class="text-title">My Order List</span>
+    <div class="orders-container">
+        <table class="orders-table">
+            <thead>
+                <tr class="header-row">
+                    <th>OrderID</th>
+                    <th>Created Date</th>
+                    <th>Total (VND)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (order of orders; track order.OrderID) {
+                <tr class="data-row">
+                    <td>{{order.OrderID}}</td>
+                    <td>{{formatDate(order.CreatedDate)}}</td>
+                    <td>{{order.Total}}</td>
+                    <td>
+                        <a href="#" class="details-link">Details</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
