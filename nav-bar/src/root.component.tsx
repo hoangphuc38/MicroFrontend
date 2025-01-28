@@ -1,6 +1,7 @@
 import "./root.component.css";
 import { BrowserRouter, Link } from "react-router-dom";
 import logo from "../src/asset/images/Logo.png";
+import logOut from '../src/asset/images/log-out.png'
 
 export default function Root(props) {
   return (
@@ -18,8 +19,8 @@ export default function Root(props) {
             Cart
           </Link>
         </div>
-        <Link to="/auth/logout" className="link">
-          Logout
+        <Link to="/auth/logout">
+         <img src={logOut} className="log-out"/>
         </Link>
       </nav>
     </BrowserRouter>
