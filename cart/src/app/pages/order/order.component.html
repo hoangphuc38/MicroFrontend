@@ -17,7 +17,7 @@
                     <td>{{formatDate(order.CreatedDate)}}</td>
                     <td>{{order.Total}}</td>
                     <td>
-                        <a href="#" class="details-link">Details</a>
+                        <a href="#" [routerLink]="['/order', order.OrderID]" class="details-link">Details</a>
                     </td>
                 </tr>
                 }

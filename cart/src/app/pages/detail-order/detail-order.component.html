@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="main-title">My Order Detail</div>
+
+    <section class="order-info">
+        <div class="section-title">Order Information</div>
+        <div class="info-grid">
+            <div class="label">OrderID:</div>
+            <div class="value">{{orderDetail.OrderID}}</div>
+
+            <div class="label">Created Date:</div>
+            <div class="value">{{orderDetail.CreatedDate}}</div>
+
+            <div class="label">Total Price:</div>
+            <div class="value price">{{orderDetail.TotalPrice}}</div>
+        </div>
+    </section>
+
+    <section class="product-list">
+        <h2 class="section-title">Product List</h2>
+        @for (product of orderDetail.Products; track $index) {
+        <div class="product-card">
+            <div class="product-info">
+                <img [src]="product.image" [alt]="product.name" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-name">{{product.name}}</h3>
+                    <p class="quantity">Quantity: {{product.quantity}}</p>
+                    <p class="price">{{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </section>
+
+    <section class="delivery-method">
+        <h2 class="section-title">Delivery Method</h2>
+        <div class="delivery-options">
+            <label class="delivery-option">
+                <input type="radio" name="delivery" checked>
+                <span class="option-text">Normal (5$)</span>
+            </label>
+            <label class="delivery-option">
+                <input type="radio" name="delivery">
+                <span class="option-text">Express ($10)</span>
+            </label>
+        </div>
+    </section>
+</div>

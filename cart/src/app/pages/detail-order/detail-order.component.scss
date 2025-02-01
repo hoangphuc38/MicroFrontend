@@ -1,0 +1,117 @@
+.container {
+    padding: 40px 50px 10px 50px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #125B9A;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    color: #125B9A;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.order-info {
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.label {
+    color: #125B9A;
+    font-weight: 500;
+}
+
+.value {
+    color: #125B9A;
+    font-weight: 600;
+
+    &.price {
+        color: #ff0000;
+    }
+}
+
+.product-list {
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-info {
+    display: flex;
+    gap: 30px;
+}
+
+.product-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-details {
+    .product-name {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .quantity {
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .price {
+        color: #125B9A;
+        font-weight: bold;
+    }
+}
+
+.delivery-method {
+    .delivery-options {
+        display: flex;
+        gap: 100px;
+    }
+
+    .delivery-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        // Style cho radio button
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #0066cc; // Màu khi checked
+        }
+
+        // Style cho text khi radio được checked
+        input[type="radio"]:checked+.option-text {
+            color: #125B9A;
+            font-weight: bold;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+    }
+}

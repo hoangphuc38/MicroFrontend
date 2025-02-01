@@ -1,10 +1,11 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-order',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterLink],
     providers: [DatePipe],
     templateUrl: './order.component.html',
     styleUrl: './order.component.scss'
