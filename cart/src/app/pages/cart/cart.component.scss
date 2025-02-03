@@ -152,6 +152,7 @@
         border-radius: 5px;
         width: 110px;
         padding: 5px 10px;
+        cursor: pointer;
 
         .text {
             color: #125B9A;
@@ -164,9 +165,10 @@
     border-radius: 10px;
     padding: 10px 20px;
     width: 25%;
-    height: 200px;
+    height: 150px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     .subtotal,
     .delivery-fee,

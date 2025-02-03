@@ -1,0 +1,153 @@
+.checkout-container {
+    padding: 40px 50px 10px 50px;
+}
+
+h3 {
+    color: #125B9A;
+}
+
+label {
+    color: #125B9A;
+}
+
+.title-text {
+    font-size: 25px;
+    font-weight: bold;
+    color: #125B9A;
+}
+
+.receiver-info {
+    margin-bottom: 40px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #125B9A;
+}
+
+.selected-products {
+    margin-bottom: 40px;
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-info {
+    display: flex;
+    gap: 30px;
+}
+
+.product-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-details {
+    .product-name {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: black;
+    }
+
+    .quantity {
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .price {
+        color: #125B9A;
+        font-weight: bold;
+    }
+}
+
+.total {
+    margin-top: 20px;
+    text-align: right;
+    color: #125B9A;
+    font-weight: 600;
+    font-size: 18px;
+
+    .summary {
+        color: #ff0000;
+    }
+}
+
+.delivery-method {
+    .delivery-options {
+        display: flex;
+        gap: 100px;
+    }
+
+    .delivery-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        color: black;
+
+        // Style cho radio button
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #0066cc; // Màu khi checked
+        }
+
+        // Style cho text khi radio được checked
+        input[type="radio"]:checked+.option-text {
+            color: #125B9A;
+            font-weight: bold;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+    }
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 30px;
+}
+
+.action-buttons button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #ff0000;
+    color: white;
+}
+
+.confirm-btn {
+    background-color: #125B9A;
+    color: white;
+}
