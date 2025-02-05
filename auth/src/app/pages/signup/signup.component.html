@@ -1,0 +1,46 @@
+<div class="register-container">
+    <div class="header">
+        <h2>Create a new account</h2>
+        <p>
+            Or <a routerLink="/login">Login to your account</a>
+        </p>
+    </div>
+
+    <div class="form-container">
+        <div class="form-box">
+            <form (ngSubmit)="handleRegister()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <div class="input-wrapper">
+                        <input id="name" placeholder="John Doe" type="text" [(ngModel)]="name" name="name" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <div class="input-wrapper">
+                        <input id="address" placeholder="TP.HCM" type="text" [(ngModel)]="address" name="address"
+                            required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <div class="input-wrapper">
+                        <input id="email" placeholder="user@example.com" type="email" [(ngModel)]="email" name="email"
+                            required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input id="password" type="password" [(ngModel)]="password" name="password" required />
+                    </div>
+                </div>
+
+                <button type="submit">Create account</button>
+            </form>
+        </div>
+    </div>
+</div>

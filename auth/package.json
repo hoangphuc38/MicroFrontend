@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:single-spa:auth": "ng build auth --configuration production",
-    "serve:single-spa:auth": "ng s --project auth --disable-host-check --port 4201 --live-reload false"
+    "serve:single-spa:auth": "ng s --project auth --disable-host-check --port 4201 --live-reload true"
   },
   "private": true,
   "dependencies": {

@@ -1,1 +1,41 @@
-<div>Login Page from Angular</div>
+<div class="login-container">
+    <div class="login-card">
+        <div class="image-side"></div>
+        <div class="form-side">
+            <h2>PK Shop</h2>
+            <p>Welcome back to our shop!</p>
+
+            <div class="divider">
+                <span></span>
+                <a href="#">Login with email</a>
+                <span></span>
+            </div>
+
+            <form (ngSubmit)="handleLogin()">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" [(ngModel)]="email" name="email" class="form-input" />
+                </div>
+
+                <div class="form-group">
+                    <div class="password-header">
+                        <label for="password">Password</label>
+                        <a href="#" class="forgot-link">Forget Password?</a>
+                    </div>
+                    <input type="password" id="password" [(ngModel)]="password" name="password" class="form-input" />
+                </div>
+
+                <button type="submit" class="login-button">
+                    <i *ngIf="loading"></i>
+                    Login
+                </button>
+            </form>
+
+            <div class="divider">
+                <span></span>
+                <a routerLink="/signup">or sign up</a>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
