@@ -28,7 +28,9 @@
 .tab_container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
+  gap: 100px;
+  justify-content: center;
   padding-left: 50px;
   padding-right: 50px;
 }
@@ -38,6 +40,9 @@
   height: 600px;
   border-radius: 30px;
   position: relative;
+}
+.tabItem:hover {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .tabImg {
@@ -69,3 +74,24 @@
   margin-bottom: 0;
   font-size: 20px;
 }
+
+.winterTab {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 25px;
+  border: #fff 2px solid;
+  z-index: 15;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+.winterTab p {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
