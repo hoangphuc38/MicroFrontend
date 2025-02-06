@@ -4,9 +4,10 @@ import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
 import { DetailOrderComponent } from './pages/detail-order/detail-order.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
-    { path: '', component: CartComponent },
+    { path: '', component: CartComponent, canActivate: [authGuard] },
     {
         path: 'order',
         children: [
