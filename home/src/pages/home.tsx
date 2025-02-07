@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import BannerImg from "../../src/asset/images/Banner.png";
 import SportImg from "../../src/asset/images/darwin.jpg";
 import WinterImg from "../../src/asset/images/winter-copy.png";
+import '../pages/home.css'
 
 export default function Home() {
   const navigate = useNavigate(); // Hook điều hướng
