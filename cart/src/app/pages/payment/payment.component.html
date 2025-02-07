@@ -21,14 +21,14 @@
 
     <div class="selected-products">
         <h3>Selected Products</h3>
-        @for (product of selectedProducts; track product.id) {
+        @for (item of selectedProducts; track item.productID) {
         <div class="product-card">
             <div class="product-info">
-                <img [src]="product.image" [alt]="product.name" class="product-image">
+                <img [src]="item.product.images[0].imageURL" [alt]="item.productID" class="product-image">
                 <div class="product-details">
-                    <h3 class="product-name">{{product.name}}</h3>
-                    <p class="quantity">Quantity: {{product.quantity}}</p>
-                    <p class="price">{{product.price}} $</p>
+                    <h3 class="product-name">{{item.product.productName}}</h3>
+                    <p class="quantity">Quantity: {{item.quantity}}</p>
+                    <p class="price">{{item.product.price}} $</p>
                 </div>
             </div>
         </div>

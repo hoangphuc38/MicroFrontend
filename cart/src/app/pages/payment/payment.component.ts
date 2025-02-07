@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CartItem } from '../../models/cart';
 
 @Component({
     selector: 'app-payment',
@@ -10,7 +11,7 @@ import { Location } from '@angular/common';
     styleUrl: './payment.component.scss'
 })
 export class PaymentComponent {
-    selectedProducts: Product[] = [];
+    selectedProducts: CartItem[] = [];
 
     receiverInfo = {
         name: '',
@@ -26,13 +27,13 @@ export class PaymentComponent {
     ) {
         const navigation = this.router.getCurrentNavigation();
         if (navigation?.extras.state) {
-            this.selectedProducts = navigation.extras.state['products'] as Product[];
+            this.selectedProducts = navigation.extras.state['products'] as CartItem[];
         }
     }
 
     calculateTotal(): number {
-        return this.selectedProducts.reduce((total, product) =>
-            total + (product.price * product.quantity), 0
+        return this.selectedProducts.reduce((total, item) =>
+            total + (item.product.price * item.quantity), 0
         );
     }
 

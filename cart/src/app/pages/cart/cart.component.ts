@@ -1,46 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Product } from '../../models/product';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { SessionService } from '../../services/session.service';
+import { CartItem } from '../../models/cart';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-cart',
     standalone: true,
-    imports: [RouterModule, FormsModule],
+    imports: [RouterModule, FormsModule, AsyncPipe],
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.scss'
 })
-export class CartComponent {
-    products: Product[] = [
-        {
-            id: 1,
-            name: 'PSG Home 2021',
-            price: 100,
-            image: 'https://th.bing.com/th/id/OIP.44ufzzkk_MsDFsiyc-KxcwHaJ6?rs=1&pid=ImgDetMain',
-            quantity: 1,
-            selected: false
-        },
-        {
-            id: 2,
-            name: 'Cricket NewJersey Blue Brush',
-            price: 120,
-            image: 'https://th.bing.com/th/id/OIP.ErU9U0s0aBza54cCX5HaUQHaHa?rs=1&pid=ImgDetMain',
-            quantity: 1,
-            selected: false
-        }
-    ];
+export class CartComponent implements OnInit {
+    products: CartItem[] = []
 
     constructor(
-        private router: Router
+        private router: Router,
+        private cartService: CartService,
+        private sessionService: SessionService
     ) { }
 
+    ngOnInit(): void {
+        const customerId = this.sessionService.getUser();
+
+        this.cartService.getAll(customerId).subscribe({
+            next: data => {
+                this.products = data
+                console.log("check: ", this.products);
+            },
+            error: err => {
+                console.log("Err: ", err)
+            }
+        })
+    }
+
     areAllSelected(): boolean {
-        return this.products.every(product => product.selected);
+        return this.products.every(item => item.product.isDeleted);
     }
 
     toggleSelectAll(): void {
         const newValue = !this.areAllSelected();
-        this.products.forEach(product => product.selected = newValue);
+        this.products.forEach(item => item.product.isDeleted = newValue);
     }
 
     increaseQuantity(product: Product): void {
@@ -55,16 +58,16 @@ export class CartComponent {
 
     calculateTotal(): number {
         return this.products
-            .filter(product => product.selected)
-            .reduce((total, product) => total + (product.price * product.quantity), 0);
+            .filter(item => item.product.isDeleted)
+            .reduce((total, product) => total + (product.product.price * product.quantity), 0);
     }
 
     hasSelectedProducts(): boolean {
-        return this.products.some(product => product.selected);
+        return this.products.some(item => item.product.isDeleted);
     }
 
     checkout(): void {
-        const selectedProducts = this.products.filter(product => product.selected);
+        const selectedProducts = this.products.filter(item => item.product.isDeleted);
 
         this.router.navigate(['/checkout'], {
             state: { products: selectedProducts }

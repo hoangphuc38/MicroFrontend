@@ -18,21 +18,21 @@
                 </div>
             </div>
             <div class="cart-list">
-                @for (product of products; track product.id) {
+                @for (item of products; track item.productID) {
                 <div class="product">
                     <div class="select-one">
-                        <input type="checkbox" class="checkbox" [(ngModel)]="product.selected" />
+                        <input type="checkbox" class="checkbox" [(ngModel)]="item.product.isDeleted" />
                         <div class="product-image">
-                            <img [src]="product.image" [alt]="product.name" />
+                            <img [src]="item.product.images[0].imageURL" [alt]="item.productID" />
                         </div>
                         <div class="product-details">
-                            <span class="normal-text">{{product.name}}</span>
-                            <span class="bold-text">{{product.price}} $</span>
+                            <span class="normal-text">{{item.product.productName}}</span>
+                            <span class="bold-text">{{item.product.price}} $</span>
                         </div>
                     </div>
                     <div class="select-second">
                         <div class="quantity-controls">
-                            <svg (click)="decreaseQuantity(product)" width="22px" height="22px" viewBox="0 0 24 24"
+                            <svg (click)="decreaseQuantity(item.product)" width="22px" height="22px" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -42,8 +42,8 @@
                                     </path>
                                 </g>
                             </svg>
-                            <span class="text">{{product.quantity}}</span>
-                            <svg (click)="increaseQuantity(product)" width="22px" height="22px" viewBox="0 0 24 24"
+                            <span class="text">{{item.quantity}}</span>
+                            <svg (click)="increaseQuantity(item.product)" width="22px" height="22px" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="select-third">
-                        <div class="price">{{product.price * product.quantity}} $</div>
+                        <div class="price">{{item.product.price * item.quantity}} $</div>
                     </div>
                 </div>
                 }

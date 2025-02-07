@@ -1,8 +1,14 @@
 export interface Product {
-    id: number;
-    name: string;
+    productID: string;
+    productName: string;
     price: number;
-    image: string;
+    images: Image[];
     quantity: number;
-    selected: boolean;
+    isDeleted: boolean;
+}
+
+interface Image {
+    id: number;
+    productId: string;
+    imageURL: string;
 }

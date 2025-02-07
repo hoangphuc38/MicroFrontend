@@ -6,6 +6,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { routes } from './app/app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 const lifecycles = singleSpaAngular({
   bootstrapFunction: singleSpaProps => {
@@ -14,7 +15,8 @@ const lifecycles = singleSpaAngular({
       providers: [
         getSingleSpaExtraProviders(),
         { provide: APP_BASE_HREF, useValue: '/sales' },
-        provideRouter(routes)
+        provideRouter(routes),
+        provideHttpClient()
       ]
     });
   },

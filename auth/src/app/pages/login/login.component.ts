@@ -30,7 +30,7 @@ export class LoginComponent {
         this.loading = true;
         this.authService.login(this.email, this.password).subscribe({
             next: data => {
-                this.storageService.saveUser(data);
+                this.storageService.saveUser(data.data.customer.id);
                 this.redirectToReturnUrl();
             },
             error: err => {

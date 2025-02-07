@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
-    private apiUrl = 'http://localhost:5000/api/Account/';
+export class CartService {
+    private apiUrl = 'http://localhost:5000/api/Cart/';
 
     constructor(private http: HttpClient) { }
 
-    login(email: string, password: string): Observable<any> {
-        return this.http.post(this.apiUrl + 'login', { email, password });
+    getAll(customerId: string): Observable<any> {
+        return this.http.get(this.apiUrl + `get-cart-items/${customerId}`);
     }
 }
