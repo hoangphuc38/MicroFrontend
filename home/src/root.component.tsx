@@ -1,6 +1,7 @@
 import "./root.component.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
+import Sport from "./pages/sport";
 
 export default function Root(props) {
   // Uncomment và tạo các component cho các route
@@ -8,8 +9,8 @@ export default function Root(props) {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/sport" element={<Sport />} />
-        <Route path="/winter" element={<Winter />} /> */}
+        <Route path="/sport" element={<Sport />} />
+        {/* <Route path="/winter" element={<Winter />} /> */}
       </Routes>
     </BrowserRouter>
     )
