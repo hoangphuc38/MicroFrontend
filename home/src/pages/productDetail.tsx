@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import "../pages/productDetail.css";
 import itemImg from '../asset/images/liverpool.jpg'
 import RatingStars from "../components/ratingStar";
+import SizeSelector from "../components/sizeSelector";
 
 export default function ProductDetail() {
   const { id } = useParams(); // Lấy tham số từ URL
@@ -25,6 +26,10 @@ export default function ProductDetail() {
             </div>
             <RatingStars rating={4}></RatingStars>
             <h2 className="detail-price">500,000 VND</h2>
+            <SizeSelector></SizeSelector>
+            <button className="add_to_cart_btn">
+                Add to Cart
+            </button>
         </div>
       </div>
     </div>
