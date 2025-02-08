@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import "../pages/productDetail.css";
+import itemImg from '../asset/images/liverpool.jpg'
 
 export default function ProductDetail() {
   const { id } = useParams(); // Lấy tham số từ URL
@@ -13,7 +14,16 @@ export default function ProductDetail() {
         <span>{">"}</span>
         <nav>Liverpool Kit 2024</nav>
       </div>
-      <p>Đây là chi tiết sản phẩm: {id}</p>
+      <div className="product-info">
+        <div className="product-img">
+            <img src={itemImg}></img>
+        </div>
+        <div className="product-detail">
+            <div className="detail-name">
+                <h1>Liverpool Kit 2024</h1>
+            </div>
+        </div>
+      </div>
     </div>
   );
 }
