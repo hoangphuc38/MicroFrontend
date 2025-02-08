@@ -29,7 +29,6 @@ export class CartComponent implements OnInit {
         this.cartService.getAll(customerId).subscribe({
             next: data => {
                 this.products = data
-                console.log("check: ", this.products);
             },
             error: err => {
                 console.log("Err: ", err)

@@ -2,46 +2,57 @@
     <div class="main-title">My Order Detail</div>
 
     <section class="order-info">
+        <div class="section-title">Receiver Information</div>
+        <div class="info-grid">
+            <div class="label">Receiver Name:</div>
+            <div class="value">{{orderDetail.order.name}}</div>
+
+            <div class="label">Numberphone:</div>
+            <div class="value">{{orderDetail.order.phone}}</div>
+
+            <div class="label">Address:</div>
+            <div class="value price">{{orderDetail.order.address}}</div>
+        </div>
+    </section>
+
+    <section class="order-info">
         <div class="section-title">Order Information</div>
         <div class="info-grid">
             <div class="label">OrderID:</div>
-            <div class="value">{{orderDetail.OrderID}}</div>
+            <div class="value">{{orderDetail.order.orderID}}</div>
 
             <div class="label">Created Date:</div>
-            <div class="value">{{orderDetail.CreatedDate}}</div>
+            <div class="value">{{formatDate(orderDetail.order.timeCreated)}}</div>
 
             <div class="label">Total Price:</div>
-            <div class="value price">{{orderDetail.TotalPrice}}</div>
+            <div class="value price">{{orderDetail.order.totalPrice}} $</div>
         </div>
     </section>
 
     <section class="product-list">
         <h2 class="section-title">Product List</h2>
-        @for (product of orderDetail.Products; track $index) {
+        @for (item of orderDetail.products; track $index) {
         <div class="product-card">
             <div class="product-info">
-                <img [src]="product.image" [alt]="product.name" class="product-image">
+                <img [src]="item.product.images[0].imageURL" [alt]="item.product.productName" class="product-image">
                 <div class="product-details">
-                    <h3 class="product-name">{{product.name}}</h3>
-                    <p class="quantity">Quantity: {{product.quantity}}</p>
-                    <p class="price">{{product.price}}</p>
+                    <h3 class="product-name">{{item.product.productName}}</h3>
+                    <p class="quantity">Quantity: {{item.quantity}}</p>
+                    <p class="price">{{item.product.price}}</p>
                 </div>
             </div>
         </div>
         }
     </section>
 
-    <section class="delivery-method">
-        <h2 class="section-title">Delivery Method</h2>
-        <div class="delivery-options">
-            <label class="delivery-option">
-                <input type="radio" name="delivery" checked>
-                <span class="option-text">Normal (5$)</span>
-            </label>
-            <label class="delivery-option">
-                <input type="radio" name="delivery">
-                <span class="option-text">Express (10$)</span>
-            </label>
+    <section class="order-info">
+        <div class="section-title">Delivery Information</div>
+        <div class="info-grid">
+            <div class="label">Delivery Method:</div>
+            <div class="value">{{orderDetail.order.deliveryMethod}}</div>
+
+            <div class="label">Total Price:</div>
+            <div class="value price">{{orderDetail.order.shippingCost}} $</div>
         </div>
     </section>
 </div>

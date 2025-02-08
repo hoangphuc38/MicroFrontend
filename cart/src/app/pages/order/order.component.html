@@ -6,18 +6,18 @@
                 <tr class="header-row">
                     <th>OrderID</th>
                     <th>Created Date</th>
-                    <th>Total (VND)</th>
+                    <th>Total ($)</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @for (order of orders; track order.OrderID) {
+                @for (order of orders; track order.orderID) {
                 <tr class="data-row">
-                    <td>{{order.OrderID}}</td>
-                    <td>{{formatDate(order.CreatedDate)}}</td>
-                    <td>{{order.Total}}</td>
+                    <td>{{order.orderID}}</td>
+                    <td>{{formatDate(order.timeOrder)}}</td>
+                    <td>{{order.totalPrice}}</td>
                     <td>
-                        <a href="#" [routerLink]="['/order', order.OrderID]" class="details-link">Details</a>
+                        <a href="#" [routerLink]="['/order', order.orderID]" class="details-link">Details</a>
                     </td>
                 </tr>
                 }

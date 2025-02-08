@@ -1,11 +1,20 @@
+import { Product } from "./product";
+
 export interface OrderDetail {
-    OrderID: string;
-    CreatedDate: string;
-    TotalPrice: string;
-    Products: {
-        name: string;
+    order: OrderInfo;
+    products: {
+        product: Product
         quantity: number;
-        price: string;
-        image: string;
     }[];
+}
+
+interface OrderInfo {
+    orderID: string;
+    timeCreated: string;
+    totalPrice: number;
+    deliveryMethod: string;
+    shippingCost: number;
+    name: string;
+    phone: string;
+    address: string;
 }
