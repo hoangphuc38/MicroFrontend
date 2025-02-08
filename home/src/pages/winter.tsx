@@ -7,6 +7,10 @@ import imgTest from "../asset/images/liverpool.jpg";
 export default function Winter() {
   const navigate = useNavigate(); // Hook điều hướng
 
+  const handleProductClick = () => {
+    navigate("/product/details/liverpool-kit-2024"); // Điều hướng tới trang chi tiết sản phẩm
+  };
+
   return (
     <div className="winter_container">
       <div className="snowflake">❅</div>
@@ -33,6 +37,7 @@ export default function Winter() {
           imgSrc={imgTest}
           name="Liverpool Kit 2024"
           price={500000}
+          onClick={handleProductClick} // Truyền hàm điều hướng
         />
       </div>
     </div>
