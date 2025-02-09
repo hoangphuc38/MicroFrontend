@@ -26,6 +26,9 @@ axiosClient.interceptors.response.use((response) => {
 
     return response;
 }, (error) => {
+    if (error.response.status === 400) {
+        return Promise.reject(error);
+    }
     //Handle errors;
     throw error;
 })

@@ -16,8 +16,8 @@ interface Product {
 class SportAPI {
     getAll = async (): Promise<Product[]> => {
         const url = `Product/get-by-category/Indoor`;
-        const response = axiosClient.get(url);
-        return (await response).data;
+        const response =  await axiosClient.get(url);
+        return response.data;
       };
 }
 

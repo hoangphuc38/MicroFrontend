@@ -22,14 +22,37 @@ export default function Sport() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
 
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await sportApi.getAll(); // Gọi API
+  //       setProducts(response); // Cập nhật state
+  //       console.log("dữ liệu test", sportApi.getAll());
+  //     } catch (error) {
+  //       console.error("Lỗi khi lấy sản phẩm:", error);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, []);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await sportApi.getAll(); // Gọi API
-        setProducts(response); // Cập nhật state
-        console.log("dữ liệu test", response);
+        const response = await fetch("https://deb5-125-235-233-43.ngrok-free.app/api/Product/get-by-category/Indoor", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+        });
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        console.log("Dữ liệu sản phẩm:", data);
+        setProducts(data || []);
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
+        setProducts([]);
       }
     };
 
