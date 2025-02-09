@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosClient";
+import axiosClient from "./axiosClient";
 
 interface ProductImage {
   id: number;
@@ -16,8 +16,8 @@ interface Product {
 class SportAPI {
     getAll = async (): Promise<Product[]> => {
         const url = `Product/get-by-category/Indoor`;
-        const response = await axiosInstance.get<Product[]>(url);
-        return response.data; // ✅ Lấy data từ response
+        const response = axiosClient.get(url);
+        return (await response).data;
       };
 }
 

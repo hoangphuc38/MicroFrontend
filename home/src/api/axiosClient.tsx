@@ -1,35 +1,33 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE_URL = "https://7a14-125-235-233-43.ngrok-free.app/api"; // URL gốc của API
+let token = localStorage.getItem("token");
 
-const axiosInstance = axios.create({
-    baseURL: API_BASE_URL,
+const axiosClient = axios.create({
+    baseURL: 'https://deb5-125-235-233-43.ngrok-free.app/api/',
     headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning':  '69420',
     },
 });
 
-// Interceptor để log request & response (Giúp debug dễ dàng hơn)
-axiosInstance.interceptors.request.use(
-    (config) => {
-        console.log("Request gửi đi:", config);
+axiosClient.interceptors.request.use(async (config) => {
+    //Handle token here
+    if (token && config.headers) {
+        config.headers.Authorization = token;
         return config;
-    },
-    (error) => {
-        console.error("Lỗi request:", error);
-        return Promise.reject(error);
     }
-);
+    return config;
+})
 
-axiosInstance.interceptors.response.use(
-    (response) => {
-        console.log("Response nhận được:", response);
-        return response;
-    },
-    (error) => {
-        console.error("Lỗi response:", error.response ? error.response.data : error);
-        return Promise.reject(error);
+axiosClient.interceptors.response.use((response) => {
+    if (response && response.data) {
+        return response.data;
     }
-);
 
-export default axiosInstance;
+    return response;
+}, (error) => {
+    //Handle errors;
+    throw error;
+})
+
+export default axiosClient;

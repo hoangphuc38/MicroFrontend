@@ -20,7 +20,21 @@ interface Product {
 
 export default function Sport() {
   const navigate = useNavigate();
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await sportApi.getAll(); // Gọi API
+        setProducts(response); // Cập nhật state
+        console.log("dữ liệu test", response);
+      } catch (error) {
+        console.error("Lỗi khi lấy sản phẩm:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="sport_container">
@@ -34,18 +48,18 @@ export default function Sport() {
         <DropdownMenu />
       </div>
       <div className="product-list">
-        {Array.isArray(products) ? (
+        {products.length > 0 ? (
           products.map((product) => (
             <ProductCard
-              key={product.id}
-              imgSrc={product.image}
-              name={product.name}
+              key={product.productID} // Sử dụng productID
+              imgSrc={product.images[0]?.imageURL || "placeholder.jpg"} // Lấy ảnh đầu tiên
+              name={product.productName}
               price={product.price}
-              onClick={() => navigate(`/product/details/${product.id}`)}
+              onClick={() => navigate(`/product/details/${product.productID}`)}
             />
           ))
         ) : (
-          <p>Không có sản phẩm nào</p> // Hiển thị thông báo nếu không có dữ liệu
+          <p>Không có sản phẩm nào</p>
         )}
       </div>
     </div>
