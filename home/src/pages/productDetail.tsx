@@ -17,7 +17,7 @@ export default function ProductDetail() {
         <nav>Liverpool Kit 2024</nav>
       </div>
       <div className="product-info">
-        <div className="product-img">
+        <div className="product-image">
             <img src={itemImg}></img>
         </div>
         <div className="product-detail">

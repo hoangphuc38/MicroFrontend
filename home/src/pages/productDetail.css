@@ -13,11 +13,11 @@
   flex-direction: row;
   margin-top: 20px;
 }
-.product-img {
+.product-image {
   width: 50%;
   height: 600px;
 }
-.product-img img {
+.product-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
