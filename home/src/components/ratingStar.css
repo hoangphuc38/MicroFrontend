@@ -1,0 +1,40 @@
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star {
+  font-size: 20px;
+  color: #ccc;
+  position: relative;
+}
+
+.filled {
+  color: gold;
+}
+
+.half {
+  position: relative;
+  width: 20px; /* Đảm bảo kích thước phù hợp */
+  height: 20px;
+  display: inline-block;
+}
+
+.half::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+  color: gold;
+  clip-path: inset(0 50% 0 0); /* Giữ nửa trái màu vàng */
+}
+
+.half::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  color: gray;
+}
