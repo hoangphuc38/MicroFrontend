@@ -4,6 +4,7 @@ import "../pages/sport.css";
 import DropdownMenu from "../components/dropdownMenu";
 import ProductCard from "../components/productCard";
 import sportApi from "../api/sportApi";
+import baseURL from '../api/constURL'
 
 interface ProductImage {
   id: number;
@@ -39,7 +40,7 @@ export default function Sport() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://deb5-125-235-233-43.ngrok-free.app/api/Product/get-by-category/Indoor", {
+        const response = await fetch(`${baseURL}Product/get-by-category/Indoor`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +76,7 @@ export default function Sport() {
           products.map((product) => (
             <ProductCard
               key={product.productID} // Sử dụng productID
-              imgSrc={product.images[0]?.imageURL || "placeholder.jpg"} // Lấy ảnh đầu tiên
+              imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
               onClick={() => navigate(`/product/details/${product.productID}`)}

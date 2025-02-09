@@ -32,3 +32,10 @@
   color: #125b9a;
   font-size: 22px;
 }
+.product-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 12px;
+}

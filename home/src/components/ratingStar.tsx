@@ -18,7 +18,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({ rating }) => {
       ))}
 
       {/* Hiển thị nửa sao nếu có */}
-      {hasHalfStar && <span className="star half">★</span>}
+      {hasHalfStar && <span className="star half"></span>}
 
       {/* Hiển thị các sao rỗng còn lại */}
       {[...Array(maxStars - filledStars - (hasHalfStar ? 1 : 0))].map((_, index) => (

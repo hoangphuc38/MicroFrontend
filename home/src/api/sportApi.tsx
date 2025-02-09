@@ -14,11 +14,11 @@ interface Product {
 }
 
 class SportAPI {
-    getAll = async (): Promise<Product[]> => {
-        const url = `Product/get-by-category/Indoor`;
-        const response =  await axiosClient.get(url);
-        return response.data;
-      };
+  getAll = async (): Promise<Product[]> => {
+    const url = `Product/get-by-category/Indoor`;
+    const response = await axiosClient.get(url);
+    return response.data;
+  };
 }
 
 const sportApi = new SportAPI();
