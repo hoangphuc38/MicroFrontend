@@ -17,8 +17,8 @@ export class LoginComponent {
     email: string = '';
     password: string = '';
     loading: boolean = false;
-    showErrorDialog: boolean = false; // Điều khiển việc hiển thị dialog
-    errorMessage: string = ''; // Thông báo lỗi
+    showErrorDialog: boolean = false;
+    errorMessage: string = '';
 
     constructor(
         private authService: AuthService,
@@ -30,7 +30,7 @@ export class LoginComponent {
         this.loading = true;
         this.authService.login(this.email, this.password).subscribe({
             next: data => {
-                this.storageService.saveUser(data.data.customer.id);
+                this.storageService.saveUser(data.data.customer.id, data.data.access_token);
                 this.redirectToReturnUrl();
             },
             error: err => {
@@ -58,6 +58,6 @@ export class LoginComponent {
     }
 
     closeDialog() {
-        this.showErrorDialog = false; // Đóng dialog khi người dùng nhấn "Close"
+        this.showErrorDialog = false;
     }
 }

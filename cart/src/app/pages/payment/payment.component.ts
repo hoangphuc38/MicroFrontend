@@ -1,29 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { CartItem } from '../../models/cart';
+import { NewOrder } from '../../models/order';
+import { OrderService } from '../../services/order.service';
+import { SessionService } from '../../services/session.service';
+import { SuccessDialogComponent } from '../../components/dialog/success-dialog.component';
+import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog.component';
 
 @Component({
     selector: 'app-payment',
     standalone: true,
+    imports: [SuccessDialogComponent, ErrorDialogComponent, CommonModule],
     templateUrl: './payment.component.html',
     styleUrl: './payment.component.scss'
 })
 export class PaymentComponent {
     selectedProducts: CartItem[] = [];
 
-    receiverInfo = {
+    newOrder: NewOrder = {
+        customerID: '',
+        totalPrice: 0,
+        deliveryMethod: '',
+        shippingCost: 0,
+        note: '',
         name: '',
+        phone: '',
         address: '',
-        phone: ''
-    };
+        selectedItems: []
+    }
 
-    deliveryMethod: 'normal' | 'express' = 'normal';
+    deliveryMethod: 'Normal' | 'Express' = 'Normal';
+
+    showErrorDialog: boolean = false;
+    errorMessage: string = '';
+    showSuccessDialog: boolean = false;
+    successMessage: string = '';
 
     constructor(
         private router: Router,
-        private location: Location
+        private location: Location,
+        private orderService: OrderService,
+        private sessionService: SessionService
     ) {
         const navigation = this.router.getCurrentNavigation();
         if (navigation?.extras.state) {
@@ -32,21 +51,23 @@ export class PaymentComponent {
     }
 
     calculateTotal(): number {
-        return this.selectedProducts.reduce((total, item) =>
+        this.newOrder.totalPrice = this.selectedProducts.reduce((total, item) =>
             total + (item.product.price * item.quantity), 0
         );
+
+        return this.newOrder.totalPrice;
     }
 
     onNameChange(event: Event) {
-        this.receiverInfo.name = (event.target as HTMLInputElement).value;
+        this.newOrder.name = (event.target as HTMLInputElement).value;
     }
 
     onAddressChange(event: Event) {
-        this.receiverInfo.address = (event.target as HTMLInputElement).value;
+        this.newOrder.address = (event.target as HTMLInputElement).value;
     }
 
     onPhoneChange(event: Event) {
-        this.receiverInfo.phone = (event.target as HTMLInputElement).value;
+        this.newOrder.phone = (event.target as HTMLInputElement).value;
     }
 
     onDeliveryMethodChange(event: any) {
@@ -54,7 +75,8 @@ export class PaymentComponent {
     }
 
     calculateDeliveryFee(): number {
-        const deliveryFee = this.deliveryMethod === 'express' ? 10 : 5;
+        const deliveryFee = this.deliveryMethod === 'Express' ? 10 : 5;
+        this.newOrder.shippingCost = deliveryFee;
         return deliveryFee;
     }
 
@@ -63,6 +85,31 @@ export class PaymentComponent {
     }
 
     onConfirm() {
-        this.router.navigate(['/order']);
+        const customerId = this.sessionService.getUser();
+        const items = this.selectedProducts.map((item) => ({
+            productID: item.productID,
+            quantity: item.quantity,
+        }))
+
+        this.newOrder.customerID = customerId;
+        this.newOrder.selectedItems = items;
+        this.newOrder.deliveryMethod = this.deliveryMethod;
+
+        this.orderService.newOrder(this.newOrder).subscribe({
+            next: data => {
+                this.showSuccessDialog = true;
+                this.successMessage = 'Create order successfully';
+                this.router.navigate(['/order']);
+            },
+            error: err => {
+                this.showErrorDialog = true;
+                this.errorMessage = 'Failed to create order';
+                console.log("Err: ", err)
+            }
+        })
+    }
+
+    closeDialog() {
+        this.showErrorDialog = false;
     }
 }

@@ -14,14 +14,9 @@ import { SessionService } from '../../services/session.service';
     styleUrl: './order.component.scss'
 })
 export class OrderComponent implements OnInit {
-    // orders = [
-    //     { OrderID: '001', CreatedDate: '2025-01-20T23:32:00', Total: 120.5, Status: 'Completed', Details: 'View Details' },
-    //     { OrderID: '002', CreatedDate: '2025-01-21T23:31:00', Total: 250.0, Status: 'Pending', Details: 'View Details' },
-    //     { OrderID: '003', CreatedDate: '2025-01-22T23:32:00', Total: 175.0, Status: 'Shipped', Details: 'View Details' },
-    //     // Thêm các đơn hàng giả lập khác nếu cần
-    // ];
-
     orders: Order[] = [];
+
+    loading: boolean = true;
 
     constructor(
         private datePipe: DatePipe,
@@ -34,7 +29,8 @@ export class OrderComponent implements OnInit {
 
         this.orderService.getAll(customerId).subscribe({
             next: data => {
-                this.orders = data
+                this.orders = data;
+                this.loading = false;
             },
             error: err => {
                 console.log("Err: ", err)

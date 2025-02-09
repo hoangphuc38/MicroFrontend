@@ -1,4 +1,7 @@
-<div class="container">
+<div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+<div class="container" *ngIf="!loading">
     <div class="title">
         <span class="title-text">My Cart</span>
         <button [routerLink]="['/order']" class="btn">Check order list</button>
@@ -32,7 +35,7 @@
                     </div>
                     <div class="select-second">
                         <div class="quantity-controls">
-                            <svg (click)="decreaseQuantity(item.product)" width="22px" height="22px" viewBox="0 0 24 24"
+                            <svg (click)="decreaseQuantity(item)" width="22px" height="22px" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -43,7 +46,7 @@
                                 </g>
                             </svg>
                             <span class="text">{{item.quantity}}</span>
-                            <svg (click)="increaseQuantity(item.product)" width="22px" height="22px" viewBox="0 0 24 24"
+                            <svg (click)="increaseQuantity(item)" width="22px" height="22px" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

@@ -1,4 +1,7 @@
-<div class="container">
+<div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+<div class="container" *ngIf="!loading">
     <span class="text-title">My Order List</span>
     <div class="orders-container">
         <table class="orders-table">

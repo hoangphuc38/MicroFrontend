@@ -1,0 +1,1 @@
+export const baseURL = "https://deb5-125-235-233-43.ngrok-free.app/api/";

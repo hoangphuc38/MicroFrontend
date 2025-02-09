@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { Product } from '../../models/product';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { SessionService } from '../../services/session.service';
 import { CartItem } from '../../models/cart';
-import { AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-cart',
     standalone: true,
-    imports: [RouterModule, FormsModule, AsyncPipe],
+    imports: [RouterModule, FormsModule, CommonModule],
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
     products: CartItem[] = []
+
+    loading: boolean = true;
 
     constructor(
         private router: Router,
@@ -28,7 +29,8 @@ export class CartComponent implements OnInit {
 
         this.cartService.getAll(customerId).subscribe({
             next: data => {
-                this.products = data
+                this.products = data;
+                this.loading = false;
             },
             error: err => {
                 console.log("Err: ", err)
@@ -45,13 +47,13 @@ export class CartComponent implements OnInit {
         this.products.forEach(item => item.product.isDeleted = newValue);
     }
 
-    increaseQuantity(product: Product): void {
-        product.quantity++;
+    increaseQuantity(item: CartItem): void {
+        item.quantity++;
     }
 
-    decreaseQuantity(product: Product): void {
-        if (product.quantity > 1) {
-            product.quantity--;
+    decreaseQuantity(item: CartItem): void {
+        if (item.quantity > 1) {
+            item.quantity--;
         }
     }
 

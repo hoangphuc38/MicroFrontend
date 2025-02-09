@@ -39,13 +39,13 @@
         <h3 class="section-title">Delivery Method</h3>
         <div class="delivery-options">
             <label class="delivery-option">
-                <input type="radio" name="delivery" value="normal" (change)="onDeliveryMethodChange($event)"
-                    [checked]="deliveryMethod === 'normal'">
+                <input type="radio" name="delivery" value="Normal" (change)="onDeliveryMethodChange($event)"
+                    [checked]="deliveryMethod === 'Normal'">
                 <span class="option-text">Normal (5$)</span>
             </label>
             <label class="delivery-option">
-                <input type="radio" name="delivery" value="express" (change)="onDeliveryMethodChange($event)"
-                    [checked]="deliveryMethod === 'express'">
+                <input type="radio" name="delivery" value="Express" (change)="onDeliveryMethodChange($event)"
+                    [checked]="deliveryMethod === 'Express'">
                 <span class="option-text">Express (10$)</span>
             </label>
         </div>
@@ -65,4 +65,9 @@
         <button class="back-btn" (click)="onBack()">Cancel</button>
         <button class="confirm-btn" (click)="onConfirm()">Confirm</button>
     </div>
+
+    <app-success-dialog *ngIf="showSuccessDialog" [message]="successMessage">
+    </app-success-dialog>
+    <app-error-dialog *ngIf="showErrorDialog" [message]="errorMessage">
+    </app-error-dialog>
 </div>
