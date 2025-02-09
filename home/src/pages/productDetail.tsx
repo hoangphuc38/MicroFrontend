@@ -49,7 +49,34 @@ export default function ProductDetail() {
     };
 
     fetchProductDetail();
-  }, [id]); // 🛠 Thêm id vào dependency array
+  }, [id]);
+
+  const requestData = {
+    customerID: "CS0001",  
+    productID: id,  
+    quantity: 1           
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      const response = await fetch(`${baseURL}Cart/add-to-cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
+        body: JSON.stringify(requestData)
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      const data = await response.json();
+      console.log("Thêm vào giỏ hàng thành công:", data); 
+    } catch (error) {
+      console.error("Lỗi khi thêm vào sản phẩm:", error);
+    }
+  }
 
   return (
     <div className="detail_container">
@@ -76,7 +103,7 @@ export default function ProductDetail() {
             <RatingStars rating={product.reviewPoint} />
             <h2 className="detail-price">$ {product.price.toLocaleString()}</h2>
             <SizeSelector />
-            <button className="add_to_cart_btn">Add to Cart</button>
+            <button className="add_to_cart_btn" onClick={handleAddToCart}>Add to Cart</button>
           </div>
         </div>
       ) : (
