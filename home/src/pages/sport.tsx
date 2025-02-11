@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../pages/sport.css";
 import DropdownMenu from "../components/dropdownMenu";
 import ProductCard from "../components/productCard";
-import sportApi from "../api/sportApi";
 import baseURL from '../api/constURL'
 
 interface ProductImage {
@@ -22,20 +21,6 @@ interface Product {
 export default function Sport() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await sportApi.getAll(); // Gọi API
-  //       setProducts(response); // Cập nhật state
-  //       console.log("dữ liệu test", sportApi.getAll());
-  //     } catch (error) {
-  //       console.error("Lỗi khi lấy sản phẩm:", error);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {

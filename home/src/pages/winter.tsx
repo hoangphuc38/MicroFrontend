@@ -1,15 +1,54 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "../pages/winter.css";
 import DropdownMenu from "../components/dropdownMenu";
 import ProductCard from "../components/productCard";
 import imgTest from "../asset/images/liverpool.jpg";
+import baseURL from "../api/constURL";
+
+interface ProductImage {
+  id: number;
+  productId: string;
+  imageURL: string;
+}
+
+interface Product {
+  productID: string;
+  productName: string;
+  price: number;
+  images: ProductImage[];
+}
 
 export default function Winter() {
   const navigate = useNavigate(); // Hook điều hướng
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const handleProductClick = () => {
-    navigate("/product/details/liverpool-kit-2024"); // Điều hướng tới trang chi tiết sản phẩm
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `${baseURL}Product/get-by-category/Outdoor`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        console.log("Dữ liệu sản phẩm:", data);
+        setProducts(data || []);
+      } catch (error) {
+        console.error("Lỗi khi lấy sản phẩm:", error);
+        setProducts([]);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="winter_container">
@@ -33,12 +72,19 @@ export default function Winter() {
         <DropdownMenu />
       </div>
       <div className="product-list">
-        <ProductCard
-          imgSrc={imgTest}
-          name="Liverpool Kit 2024"
-          price={500000}
-          onClick={handleProductClick} // Truyền hàm điều hướng
-        />
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard
+              key={product.productID} // Sử dụng productID
+              imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
+              name={product.productName}
+              price={product.price}
+              onClick={() => navigate(`/product/details/${product.productID}`)}
+            />
+          ))
+        ) : (
+          <p>Không có sản phẩm nào</p>
+        )}
       </div>
     </div>
   );
