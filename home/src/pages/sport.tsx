@@ -16,6 +16,7 @@ interface Product {
   productName: string;
   price: number;
   images: ProductImage[];
+  sold: number,
 }
 
 export default function Sport() {
@@ -68,6 +69,7 @@ export default function Sport() {
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
+              sold={product.sold}
               onClick={() => navigate(`/product/sportProduct/details/${product.productID}`)}
             />
           ))

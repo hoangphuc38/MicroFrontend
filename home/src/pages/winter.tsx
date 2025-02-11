@@ -5,6 +5,7 @@ import DropdownMenu from "../components/dropdownMenu";
 import ProductCard from "../components/productCard";
 import imgTest from "../asset/images/liverpool.jpg";
 import baseURL from "../api/constURL";
+import WinterCard from "../components/winterCard";
 
 interface ProductImage {
   id: number;
@@ -17,6 +18,7 @@ interface Product {
   productName: string;
   price: number;
   images: ProductImage[];
+  sold: number
 }
 
 export default function Winter() {
@@ -74,11 +76,12 @@ export default function Winter() {
       <div className="product-list">
         {products.length > 0 ? (
           products.map((product) => (
-            <ProductCard
+            <WinterCard
               key={product.productID} // Sử dụng productID
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
+              sold={product.sold}
               onClick={() => navigate(`/product/winterProduct/details/${product.productID}`)}
             />
           ))

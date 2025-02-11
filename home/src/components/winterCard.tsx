@@ -1,16 +1,16 @@
 import React from "react";
 import "./ProductCard.css";
-import background from "../asset/images/Icon-bg.png";
+import background from "../asset/images/TOTY-Icon.png";
 
 interface ProductCardProps {
   imgSrc: string;
   name: string;
   price: number;
-  sold: number,
+  sold: number;
   onClick: () => void; // Thêm prop onClick
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
+const WinterCard: React.FC<ProductCardProps> = ({
   imgSrc,
   name,
   price,
@@ -34,4 +34,4 @@ const ProductCard: React.FC<ProductCardProps> = ({
   );
 };
 
-export default ProductCard;
+export default WinterCard;

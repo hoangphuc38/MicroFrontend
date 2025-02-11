@@ -38,19 +38,31 @@
 }
 
 .product-info {
-  padding: 0px 15px;
+  padding: 10px 15px;
   height: 100px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-name {
   font-size: 18px;
   font-weight: 700;
   color: #534626;
+  margin: 0;
 }
 
 .product-price {
   font-size: 16px;
   color: #ff5722;
   font-weight: 700;
+  margin: 0;
+}
+
+.product-sold {
+  font-size: 16px;
+  color: #534626;
+  font-weight: 700;
+  margin: 0;
 }
