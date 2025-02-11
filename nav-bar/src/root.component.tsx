@@ -12,7 +12,7 @@ export default function Root(props) {
           <text>PKShop</text>
         </Link>
         <div>
-          <Link to="/product" className="link">
+          <Link to="/" className="link">
             Product
           </Link>
           <Link to="/sales" className="link">

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../pages/sport.css";
 import DropdownMenu from "../components/dropdownMenu";
 import ProductCard from "../components/productCard";
-import baseURL from '../api/constURL'
+import baseURL from "../api/constURL";
 
 interface ProductImage {
   id: number;
@@ -25,14 +25,18 @@ export default function Sport() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${baseURL}Product/get-by-category/Indoor`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "69420",
-          },
-        });
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const response = await fetch(
+          `${baseURL}Product/get-by-category/Indoor`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
         console.log("Dữ liệu sản phẩm:", data);
         setProducts(data || []);
@@ -48,9 +52,9 @@ export default function Sport() {
   return (
     <div className="sport_container">
       <div className="link_container">
-        <nav>Home</nav>
+        <nav onClick={() => navigate("/")}>Home</nav>
         <span>{">"}</span>
-        <nav>Sport Products</nav>
+        <nav onClick={() => navigate("/sport")}>Sport Products</nav>
       </div>
       <div className="filter_container">
         <h2>Sport Products</h2>
@@ -64,7 +68,7 @@ export default function Sport() {
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
-              onClick={() => navigate(`/product/details/${product.productID}`)}
+              onClick={() => navigate(`/product/sportProduct/details/${product.productID}`)}
             />
           ))
         ) : (

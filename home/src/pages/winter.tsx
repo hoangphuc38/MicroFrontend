@@ -63,9 +63,9 @@ export default function Winter() {
       <div className="snowflake">❆</div>
       <div className="snowflake">❄</div>
       <div className="link_container">
-        <nav>Home</nav>
+        <nav onClick={() => navigate("/")}>Home</nav>
         <span>{">"}</span>
-        <nav>Winter Products</nav>
+        <nav onClick={() => navigate("/winter")}>Winter Products</nav>
       </div>
       <div className="filter_container">
         <h2>Winter Products</h2>
@@ -79,7 +79,7 @@ export default function Winter() {
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
-              onClick={() => navigate(`/product/details/${product.productID}`)}
+              onClick={() => navigate(`/product/winterProduct/details/${product.productID}`)}
             />
           ))
         ) : (

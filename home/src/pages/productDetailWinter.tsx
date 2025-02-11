@@ -5,6 +5,7 @@ import "../pages/productDetail.css";
 import itemImg from "../asset/images/liverpool.jpg";
 import RatingStars from "../components/ratingStar";
 import SizeSelector from "../components/sizeSelector";
+import { useNavigate } from "react-router-dom";
 
 interface ProductImage {
   id: number;
@@ -21,6 +22,7 @@ interface Product {
 }
 
 export default function ProductDetail() {
+  const navigate = useNavigate(); // Hook điều hướng
   const { id } = useParams(); // Lấy tham số từ URL
   const [product, setProduct] = useState<Product | null>(null); // 🛠 Sửa undefined thành null để dễ kiểm tra
 
@@ -52,9 +54,9 @@ export default function ProductDetail() {
   }, [id]);
 
   const requestData = {
-    customerID: "CS0001",  
-    productID: id,  
-    quantity: 1           
+    customerID: "CS0001",
+    productID: id,
+    quantity: 1,
   };
 
   const handleAddToCart = async () => {
@@ -65,34 +67,36 @@ export default function ProductDetail() {
           "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "69420",
         },
-        body: JSON.stringify(requestData)
+        body: JSON.stringify(requestData),
       });
 
       if (!response.ok)
         throw new Error(`HTTP error! Status: ${response.status}`);
 
       const data = await response.json();
-      console.log("Thêm vào giỏ hàng thành công:", data); 
+      console.log("Thêm vào giỏ hàng thành công:", data);
     } catch (error) {
       console.error("Lỗi khi thêm vào sản phẩm:", error);
     }
-  }
+  };
 
   return (
     <div className="detail_container">
       <div className="link_container">
-        <nav>Home</nav>
+        <nav onClick={() => navigate("/")}>Home</nav>
         <span>{">"}</span>
-        <nav>Winter Products</nav>
+        <nav onClick={() => navigate("/winter")}>Winter Products</nav>
         <span>{">"}</span>
-        <nav>Liverpool Kit 2024</nav>
+        {product ? <nav>{product.productName}</nav> : <></>}
       </div>
 
       {product ? (
         <div className="product-infor">
           <div className="product-image">
             <img
-              src={product.images?.length ? product.images[0].imageURL : itemImg}
+              src={
+                product.images?.length ? product.images[0].imageURL : itemImg
+              }
               alt={product.productName}
             />
           </div>
@@ -103,7 +107,9 @@ export default function ProductDetail() {
             <RatingStars rating={product.reviewPoint} />
             <h2 className="detail-price">$ {product.price.toLocaleString()}</h2>
             <SizeSelector />
-            <button className="add_to_cart_btn" onClick={handleAddToCart}>Add to Cart</button>
+            <button className="add_to_cart_btn" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
           </div>
         </div>
       ) : (
