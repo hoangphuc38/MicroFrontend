@@ -21,6 +21,9 @@ export class OrderService {
     }
 
     newOrder(order: NewOrder): Observable<any> {
-        return this.http.post(this.apiUrl + `new-order?paymentType=1`, { order }, { headers: this.headers });
+        return this.http.post(
+            this.apiUrl + `new-order?paymentType=1`,
+            order,
+            { headers: this.headers });
     }
 }

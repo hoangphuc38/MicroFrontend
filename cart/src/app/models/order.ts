@@ -13,6 +13,7 @@ export interface NewOrder {
     name: string;
     phone: string;
     address: string;
+    voucherID: string;
     selectedItems: {
         productID: string;
         quantity: number;

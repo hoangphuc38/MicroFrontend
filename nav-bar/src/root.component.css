@@ -12,47 +12,58 @@
   top: 0;
   z-index: 100;
   min-height: 52.6px;
+  border-bottom: 1px solid #A59A9A;
 }
+
 .link-container {
   display: flex;
   flex-direction: row;
 }
+
 .link {
   margin-right: 20px;
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
+
 .home-link {
   flex-direction: row;
   display: flex;
 }
+
 .home-link text {
   font-size: 22px;
   color: #125b9a;
 }
+
 .link-icon {
   height: 20px;
   width: 40px;
 }
+
 .log-out {
   height: 25px;
   width: 25px;
 }
-.log_out{
+
+.log_out {
   height: 20px;
   width: 20px;
   fill: #125b9a;
   cursor: pointer;
 }
+
 .user-infor-container {
   display: flex;
   gap: 10px;
 }
+
 .link:hover,
 .link:focus {
   color: #1098f7;
 }
+
 .nav-login {
   text-decoration: none;
   padding: 5px 12px;

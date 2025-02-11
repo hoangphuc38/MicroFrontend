@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
 import { Router } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { CartItem } from '../../models/cart';
@@ -28,6 +27,7 @@ export class PaymentComponent {
         name: '',
         phone: '',
         address: '',
+        voucherID: '',
         selectedItems: []
     }
 
