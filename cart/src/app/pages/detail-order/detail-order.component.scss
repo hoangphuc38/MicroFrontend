@@ -42,18 +42,18 @@
     }
 }
 
-.product-list {
+.angular-product-list {
     margin-bottom: 2rem;
 }
 
-.product-card {
+.agl-product-card {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
-.product-info {
+.agl-product-info {
     display: flex;
     gap: 30px;
 }
@@ -66,7 +66,7 @@
 }
 
 .product-details {
-    .product-name {
+    .agl-product-name {
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
     }

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import baseURL from "../api/constURL";
 import "../pages/productDetail.css";
@@ -24,6 +24,7 @@ export default function ProductDetailSport() {
   const navigate = useNavigate(); // Hook điều hướng
   const { id } = useParams(); // Lấy tham số từ URL
   const [product, setProduct] = useState<Product | null>(null); // 🛠 Sửa undefined thành null để dễ kiểm tra
+  const token = window.sessionStorage.getItem("auth-user");
 
   useEffect(() => {
     if (!id) return; // Nếu không có id, không gọi API
@@ -53,29 +54,34 @@ export default function ProductDetailSport() {
   }, [id]);
 
   const requestData = {
-    customerID: "CS0001",
+    customerID: token.toString().replace(/"/g, ""),
     productID: id,
     quantity: 1,
   };
 
   const handleAddToCart = async () => {
-    try {
-      const response = await fetch(`${baseURL}Cart/add-to-cart`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "69420",
-        },
-        body: JSON.stringify(requestData),
-      });
+    const token = window.sessionStorage.getItem("auth-user");
+    if (!token) {
+      navigate(`/auth?returnUrl=${window.location.pathname}`);
+    } else {
+      try {
+        const response = await fetch(`${baseURL}Cart/add-to-cart`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+          body: JSON.stringify(requestData),
+        });
 
-      if (!response.ok)
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
 
-      const data = await response.json();
-      console.log("Thêm vào giỏ hàng thành công:", data);
-    } catch (error) {
-      console.error("Lỗi khi thêm vào sản phẩm:", error);
+        const data = await response.json();
+        console.log("Thêm vào giỏ hàng thành công:", data);
+      } catch (error) {
+        console.error("Lỗi khi thêm vào sản phẩm:", error);
+      }
     }
   };
 
@@ -91,7 +97,7 @@ export default function ProductDetailSport() {
 
       {product ? (
         <div className="product-infor">
-          <div className="product-image">
+          <div className="react-product-image">
             <img
               src={product.images?.length ? product.images[0].imageURL : ""}
               alt={product.productName}

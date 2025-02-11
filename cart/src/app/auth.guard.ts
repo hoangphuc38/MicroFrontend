@@ -11,6 +11,6 @@ export const authGuard: CanActivateFn = (route, state) => {
         return true;
     }
 
-    document.location.href = `/auth?returnUrl=/sales${state.url}`
+    document.location.href = `/auth?returnUrl=/cart${state.url}`
     return false;
 };

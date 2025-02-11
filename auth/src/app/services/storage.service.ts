@@ -13,10 +13,12 @@ export class StorageService {
         window.sessionStorage.clear();
     }
 
-    public saveUser(user: any, token: any): void {
+    public saveUser(user: any, token: any, name: any): void {
         window.sessionStorage.removeItem(USER_KEY);
+        window.sessionStorage.removeItem('name');
         window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
         window.localStorage.setItem('Token', JSON.stringify(token));
+        window.sessionStorage.setItem('name', JSON.stringify(name));
     }
 
     public getUser(): any {

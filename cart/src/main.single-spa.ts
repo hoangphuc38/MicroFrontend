@@ -14,7 +14,7 @@ const lifecycles = singleSpaAngular({
     return bootstrapApplication(AppComponent, {
       providers: [
         getSingleSpaExtraProviders(),
-        { provide: APP_BASE_HREF, useValue: '/sales' },
+        { provide: APP_BASE_HREF, useValue: '/cart' },
         provideRouter(routes),
         provideHttpClient()
       ]

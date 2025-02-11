@@ -22,11 +22,11 @@
     <div class="selected-products">
         <h3>Selected Products</h3>
         @for (item of selectedProducts; track item.productID) {
-        <div class="product-card">
-            <div class="product-info">
+        <div class="agl-product-card">
+            <div class="agl-product-info">
                 <img [src]="item.product.images[0].imageURL" [alt]="item.productID" class="product-image">
                 <div class="product-details">
-                    <h3 class="product-name">{{item.product.productName}}</h3>
+                    <h3 class="agl-product-name">{{item.product.productName}}</h3>
                     <p class="quantity">Quantity: {{item.quantity}}</p>
                     <p class="price">{{item.product.price}} $</p>
                 </div>
