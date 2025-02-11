@@ -4,7 +4,6 @@ import logo from "../src/asset/images/Logo.png";
 import logOut from "../src/asset/images/log-out.png";
 
 export default function Root(props) {
-  // const navigate = useNavigate();
 
   const handleOnClickProduct = () => {
     setTimeout(() => {

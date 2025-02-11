@@ -1,41 +1,44 @@
 .nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 8px;
-    padding-right: 8px;
-    background: #fff;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #fff;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .link-container {
   display: flex;
   flex-direction: row;
 }
-  .link {
-    margin-right: 20px;
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .home-link{
-    flex-direction: row;
-    display: flex;
-  }
-  .home-link text{
-      font-size: 22px;
-      color: #125B9A;
-  }
-  .link-icon{
-    height: 20px;
-    width: 40px;
-  }
-  .log-out{
-    height: 25px;
-    width: 30px;
-  }
-  .link:hover,
-  .link:focus {
-    color: #1098f7;
-  }
+.link {
+  margin-right: 20px;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home-link {
+  flex-direction: row;
+  display: flex;
+}
+.home-link text {
+  font-size: 22px;
+  color: #125b9a;
+}
+.link-icon {
+  height: 20px;
+  width: 40px;
+}
+.log-out {
+  height: 25px;
+  width: 30px;
+}
+.link:hover,
+.link:focus {
+  color: #1098f7;
+}
