@@ -1,4 +1,7 @@
-<div class="container">
+<div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+<div class="container" *ngIf="!loading">
     <div class="main-title">My Order Detail</div>
 
     <section class="order-info">
@@ -38,7 +41,7 @@
                 <div class="product-details">
                     <h3 class="agl-product-name">{{item.product.productName}}</h3>
                     <p class="quantity">Quantity: {{item.quantity}}</p>
-                    <p class="price">{{item.product.price}}</p>
+                    <p class="price">{{item.product.price}} $</p>
                 </div>
             </div>
         </div>
@@ -51,7 +54,7 @@
             <div class="label">Delivery Method:</div>
             <div class="value">{{orderDetail.order.deliveryMethod}}</div>
 
-            <div class="label">Total Price:</div>
+            <div class="label">Shipping Cost:</div>
             <div class="value price">{{orderDetail.order.shippingCost}} $</div>
         </div>
     </section>

@@ -3,12 +3,12 @@ import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { OrderDetail } from '../../models/order-detail';
 import { OrderDetailService } from '../../services/order-detail.service';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-detail-order',
     standalone: true,
-    imports: [RouterModule],
+    imports: [CommonModule, RouterModule],
     providers: [DatePipe],
     templateUrl: './detail-order.component.html',
     styleUrl: './detail-order.component.scss'
@@ -28,6 +28,8 @@ export class DetailOrderComponent implements OnInit {
         products: []
     }
 
+    loading: boolean = true;
+
     constructor(
         private route: ActivatedRoute,
         private datePipe: DatePipe,
@@ -40,7 +42,7 @@ export class DetailOrderComponent implements OnInit {
             this.orderDetailService.getDetail(orderId).subscribe({
                 next: data => {
                     this.orderDetail = data;
-                    console.log("check: ", data);
+                    this.loading = false;
                 },
                 error: err => {
                     console.log("Err: ", err)

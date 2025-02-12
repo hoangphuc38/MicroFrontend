@@ -24,7 +24,7 @@ export class LoginComponent {
     private authService: AuthService,
     private storageService: StorageService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   handleLogin(): void {
     this.loading = true;

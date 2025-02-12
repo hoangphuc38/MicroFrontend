@@ -94,6 +94,7 @@ export class PaymentComponent {
         this.newOrder.customerID = customerId;
         this.newOrder.selectedItems = items;
         this.newOrder.deliveryMethod = this.deliveryMethod;
+        this.newOrder.totalPrice = this.newOrder.totalPrice + this.newOrder.shippingCost;
 
         this.orderService.newOrder(this.newOrder).subscribe({
             next: data => {
