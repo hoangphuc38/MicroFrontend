@@ -5,6 +5,20 @@ import "../pages/productDetail.css";
 import RatingStars from "../components/ratingStar";
 import SizeSelector from "../components/sizeSelector";
 import { useNavigate } from "react-router-dom";
+import { CheckCircle, XCircle } from "lucide-react";
+
+const ToastMessage = ({ message, type, show }) => {
+  return (
+    <div className={`toast ${type} ${show ? "show" : ""}`}>
+      {type === "success" ? (
+        <CheckCircle className="icon success-icon" />
+      ) : (
+        <XCircle className="icon error-icon" />
+      )}
+      <span>{message}</span>
+    </div>
+  );
+};
 
 interface ProductImage {
   id: number;
@@ -21,13 +35,22 @@ interface Product {
 }
 
 export default function ProductDetailSport() {
+  const [toast, setToast] = useState({ message: "", type: "", show: false });
+
+  const showToast = (message: string, type: "success" | "error") => {
+    setToast({ message, type, show: true });
+
+    setTimeout(() => {
+      setToast({ message: "", type: "", show: false });
+    }, 3000);
+  };
+
   const navigate = useNavigate(); // Hook điều hướng
   const { id } = useParams(); // Lấy tham số từ URL
-  const [product, setProduct] = useState<Product | null>(null); // 🛠 Sửa undefined thành null để dễ kiểm tra
-  const token = window.sessionStorage.getItem("auth-user");
+  const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    if (!id) return; // Nếu không có id, không gọi API
+    if (!id) return;
 
     const fetchProductDetail = async () => {
       try {
@@ -43,7 +66,6 @@ export default function ProductDetailSport() {
           throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
-        console.log("Dữ liệu sản phẩm:", data);
         setProduct(data);
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
@@ -53,18 +75,17 @@ export default function ProductDetailSport() {
     fetchProductDetail();
   }, [id]);
 
-  const requestData = {
-    customerID: token.toString().replace(/"/g, ""),
-    productID: id,
-    quantity: 1,
-  };
-
   const handleAddToCart = async () => {
     const token = window.sessionStorage.getItem("auth-user");
     if (!token) {
       navigate(`/auth?returnUrl=${window.location.pathname}`);
     } else {
       try {
+        const requestData = {
+          customerID: token.toString().replace(/"/g, ""),
+          productID: id,
+          quantity: 1,
+        };
         const response = await fetch(`${baseURL}Cart/add-to-cart`, {
           method: "POST",
           headers: {
@@ -76,11 +97,13 @@ export default function ProductDetailSport() {
 
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        console.log("Thêm vào giỏ hàng thành công:", data);
+        showToast("Successfully add product to Cart", "success");
+        setTimeout(() => {
+          navigate("/cart");
+        }, 1500);
       } catch (error) {
         console.error("Lỗi khi thêm vào sản phẩm:", error);
+        showToast("Failed to add product to cart", "error");
       }
     }
   };
@@ -118,6 +141,13 @@ export default function ProductDetailSport() {
       ) : (
         <p>Đang tải dữ liệu sản phẩm...</p>
       )}
+
+      {/* Hiển thị Toast Message */}
+      <ToastMessage
+        message={toast.message}
+        type={toast.type}
+        show={toast.show}
+      />
     </div>
   );
 }

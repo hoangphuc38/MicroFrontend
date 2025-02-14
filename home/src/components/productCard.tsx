@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductCard.css";
-import background from "../asset/images/Icon-bg.png";
+import background from "../asset/images/sport-card.jpg";
 
 interface ProductCardProps {
   imgSrc: string;

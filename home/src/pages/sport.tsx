@@ -17,17 +17,20 @@ interface Product {
   price: number;
   images: ProductImage[];
   sold: number,
+  productNameVie: string,
 }
 
 export default function Sport() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [filterOption, setFilterOption] = useState<string>("All");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `${baseURL}Product/get-by-category/Indoor`,
+          `${baseURL}Product/get-by-category/Sport`,
           {
             method: "GET",
             headers: {
@@ -41,6 +44,7 @@ export default function Sport() {
         const data = await response.json();
         console.log("Dữ liệu sản phẩm:", data);
         setProducts(data || []);
+        setFilteredProducts(data || []);
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
         setProducts([]);
@@ -49,6 +53,21 @@ export default function Sport() {
 
     fetchProducts();
   }, []);
+
+  // Hàm xử lý bộ lọc
+  const handleFilterChange = (option: string) => {
+    setFilterOption(option);
+
+    let filtered = [...products];
+    if (option === "Best Seller") {
+      filtered.sort((a, b) => b.sold - a.sold);
+    } else if (option === "Men") {
+      filtered = filtered.filter((product) => product.productNameVie === "Men");
+    } else if (option === "Women") {
+      filtered = filtered.filter((product) => product.productNameVie === "Women");
+    }
+    setFilteredProducts(filtered);
+  };
 
   return (
     <div className="sport_container">
@@ -59,13 +78,13 @@ export default function Sport() {
       </div>
       <div className="filter_container">
         <h2>Sport Products</h2>
-        <DropdownMenu />
+        <DropdownMenu onChange={handleFilterChange}/>
       </div>
       <div className="product-list">
-        {products.length > 0 ? (
-          products.map((product) => (
+      {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
             <ProductCard
-              key={product.productID} // Sử dụng productID
+              key={product.productID}
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}

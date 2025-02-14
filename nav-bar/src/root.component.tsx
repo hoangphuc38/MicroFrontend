@@ -10,6 +10,7 @@ export default function Root(props) {
 
   const handleLogOut = () => {
     sessionStorage.removeItem("auth-user");
+    sessionStorage.removeItem('name')
     setToken(null);
   };
 
@@ -24,7 +25,7 @@ export default function Root(props) {
       <nav className="nav">
         <Link to="/" className="link home-link">
           <img src={logo} className="link-icon"></img>
-          <text>PKShop</text>
+          <text>PKShoppp</text>
         </Link>
         <div className="link-container">
           <Link to={"/"} onClick={handleOnClickProduct} className="link">

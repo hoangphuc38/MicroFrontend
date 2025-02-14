@@ -1,11 +1,15 @@
 import { useState } from "react";
 import "../components/dropdownMenu.css"; // Import CSS
 
-export default function DropdownMenu() {
+interface DropdownMenuProps {
+  onChange: (option: string) => void;
+}
+
+export default function DropdownMenu({ onChange }: DropdownMenuProps) {
   const [selected, setSelected] = useState("All");
   const [isOpen, setIsOpen] = useState(false);
 
-  const options = ["All", "Best seller", "Men", "Women"];
+  const options = ["All", "Best Seller", "Men", "Women"];
 
   return (
     <div className="dropdown">
@@ -25,6 +29,7 @@ export default function DropdownMenu() {
               onClick={() => {
                 setSelected(option);
                 setIsOpen(false);
+                onChange(option); // Gửi giá trị về Sport.tsx
               }}
             >
               {option}

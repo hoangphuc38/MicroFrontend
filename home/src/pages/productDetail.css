@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
 
 .detail_container {
   width: 100%;
@@ -16,6 +16,8 @@
 .react-product-image {
   width: 50%;
   height: 600px;
+  border: 2px solid #cdcdcd;
+  border-radius: 8px;
 }
 .react-product-image img {
   width: 100%;
@@ -23,19 +25,63 @@
   object-fit: contain;
 }
 .product-detail {
-    margin-left: 30px;
-    flex: 1;
+  margin-left: 30px;
+  flex: 1;
 }
 .add_to_cart_btn {
-    margin-top: 25px;
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 25px;
-    font-family: 'Merriweather', serif;
-    border-radius: 20px;
-    background-color: #125b9a;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  margin-top: 25px;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 25px;
+  font-family: "Merriweather", serif;
+  border-radius: 20px;
+  background-color: #125b9a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+/* Toast Message Styles */
+.toast {
+  position: fixed;
+  top: 60px;
+  right: -300px; /* Ẩn ban đầu ngoài màn hình */
+  background-color: #fff;
+  color: #333;
+  padding: 12px 20px;
+  border-left: 6px solid transparent;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: right 0.5s ease-in-out; /* Hiệu ứng trượt vào */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toast.success {
+  border-left-color: #4caf50; /* Xanh lá */
+}
+
+.toast.error {
+  border-left-color: #f44336; /* Đỏ */
+}
+
+.toast.show {
+  right: 20px; /* Khi hiển thị, trượt vào */
+}
+
+/* Icon trong Toast */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.success-icon {
+  color: #4caf50;
+}
+
+.error-icon {
+  color: #f44336;
 }

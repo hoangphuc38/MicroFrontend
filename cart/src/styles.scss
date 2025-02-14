@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
 
 body {
-    background-color: white;
     font-family: "Merriweather", serif;
 }
 
@@ -15,5 +14,6 @@ button {
 
     &:hover {
         background-color: #007bff;
+        color: #fff;
     }
 }

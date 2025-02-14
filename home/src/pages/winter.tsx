@@ -18,18 +18,38 @@ interface Product {
   productName: string;
   price: number;
   images: ProductImage[];
-  sold: number
+  sold: number;
+  productNameVie: string;
 }
 
 export default function Winter() {
   const navigate = useNavigate(); // Hook điều hướng
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [filterOption, setFilterOption] = useState<string>("All");
+
+  // Hàm xử lý bộ lọc
+  const handleFilterChange = (option: string) => {
+    setFilterOption(option);
+
+    let filtered = [...products];
+    if (option === "Best Seller") {
+      filtered.sort((a, b) => b.sold - a.sold);
+    } else if (option === "Men") {
+      filtered = filtered.filter((product) => product.productNameVie === "Men");
+    } else if (option === "Women") {
+      filtered = filtered.filter(
+        (product) => product.productNameVie === "Women"
+      );
+    }
+    setFilteredProducts(filtered);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `${baseURL}Product/get-by-category/Outdoor`,
+          `${baseURL}Product/get-by-category/Winter`,
           {
             method: "GET",
             headers: {
@@ -43,6 +63,7 @@ export default function Winter() {
         const data = await response.json();
         console.log("Dữ liệu sản phẩm:", data);
         setProducts(data || []);
+        setFilteredProducts(data || []);
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
         setProducts([]);
@@ -71,18 +92,20 @@ export default function Winter() {
       </div>
       <div className="filter_container">
         <h2>Winter Products</h2>
-        <DropdownMenu />
+        <DropdownMenu onChange={handleFilterChange} />
       </div>
       <div className="product-list">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <WinterCard
-              key={product.productID} // Sử dụng productID
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard
+              key={product.productID}
               imgSrc={product.images[0]?.imageURL || "placeholder.jpg"}
               name={product.productName}
               price={product.price}
               sold={product.sold}
-              onClick={() => navigate(`/product/winterProduct/details/${product.productID}`)}
+              onClick={() =>
+                navigate(`/product/sportProduct/details/${product.productID}`)
+              }
             />
           ))
         ) : (
